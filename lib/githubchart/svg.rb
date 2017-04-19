@@ -8,6 +8,7 @@ module GithubChart
 
   add_support(:svg)
   add_support(:svg_square)
+  add_support(:svg_only_chart)
 
   ##
   # Convert stats into SVG
@@ -29,6 +30,14 @@ module GithubChart
       chart = SVGPlot.new(width: 13 * grid.column_size - 2,
                           height: 13 * grid.row_size - 2)
       svg_add_points grid, chart, 0
+      chart.to_s
+    end
+
+    def render_svg_only_chart
+      grid = matrix
+      chart = SVGPlot.new(width: 13 * grid.column_size + 13,
+                          height: 13 * grid.row_size + 13)
+      svg_add_points grid, chart
       chart.to_s
     end
 
